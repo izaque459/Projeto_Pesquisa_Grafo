@@ -41,5 +41,5 @@ def build_fibonacci_tree(n, fib_sequence):
         graph.add_edge(str(i), str(i-1))
         graph.add_edge(str(i), str(i-2))
 
-    return graph.vertices[str(n-1)]  # Retorna o nó raiz (último vértice adicionado)
+    return graph, graph.vertices[str(n-1)]  # Retorna o grafo e o nó raiz
 
