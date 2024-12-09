@@ -1,7 +1,7 @@
 import buscas
 from collections import deque
 
-def bfs(grafh,s):
+def bfs(graph,s):
 
     visited = set()
     queue = deque([s])
@@ -9,8 +9,9 @@ def bfs(grafh,s):
     
     while queue:
         v = queue.popleft()
-        print(f"Visitando: {v}")
-        for w in grafh.get_neighbors(v):
+        vertex = graph.vertices_label[v]  # Obtenha o objeto Vertex para depuração
+        print(f"Visitando: {v}, valor fibonacci: {vertex.value} endereco: {id(vertex)}") # Para depuração
+        for w in graph.get_neighbors(v):
             if w not in visited:
                 visited.add(w)
                 queue.append(w)
@@ -19,7 +20,7 @@ def bfs(grafh,s):
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
 fib_sequence = buscas.create_fibonacci_sequence(n)
-grafh, root = buscas.build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
+graph, root = buscas.build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
 
 inicio = root.label
-bfs(grafh,inicio)
+bfs(graph,inicio)
