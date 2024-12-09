@@ -17,6 +17,10 @@ class Graph:
         self.vertices[u].neighbors.append(v)
         self.vertices[v].neighbors.append(u)  # Para grafo não direcionado
         
+    def get_neighbors(self,u):
+        return self.vertices[u].neighbors
+
+        
 # esta função criará a sequencia de fibonacci dado um numero de elementos
 def create_fibonacci_sequence(n):
     fib_sequence = [0, 1]
