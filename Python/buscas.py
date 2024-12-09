@@ -39,7 +39,3 @@ def build_fibonacci_tree(n, fib_sequence):
 
     return graph.vertices[str(n-1)]  # Retorna o nó raiz (último vértice adicionado)
 
-# Exemplo de uso
-n = 4  # Número de elementos da sequência Fibonacci
-fib_sequence = create_fibonacci_sequence(n)
-root = build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
