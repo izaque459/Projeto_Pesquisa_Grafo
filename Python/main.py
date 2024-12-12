@@ -1,4 +1,4 @@
-import buscas
+from buscas import Vertex,Graph,create_fibonacci_sequence,build_fibonacci_tree
 from collections import deque
 
 def bfs(graph,s):
@@ -35,8 +35,8 @@ def bfs_with_goal(graph,s,goal):
     return None
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
-fib_sequence = buscas.create_fibonacci_sequence(n)
-graph, root = buscas.build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
+fib_sequence = create_fibonacci_sequence(n)
+graph, root = build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
 
 inicio = root.label
 bfs(graph,inicio)
