@@ -1,6 +1,7 @@
 from buscas import Vertex,Graph,create_fibonacci_sequence,build_fibonacci_tree
 from collections import deque
 
+# bfs faz uma pesquisa em largura em um grafo a partir de um rotulo de um nó
 def bfs(graph,s):
 
     visited = set()
@@ -16,7 +17,8 @@ def bfs(graph,s):
                 visited.add(w)
                 queue.append(w)
     return None
-                
+               
+# bfs_with_goal faz uma pesquisa em lagura em um grafo mas pode terminar antes desde qeu encontre um objetivo             
 def bfs_with_goal(graph,s,goal):
 
     visited = set()
