@@ -35,6 +35,7 @@ def bfs_with_goal(graph,s,goal):
                 visited.add(w)
                 queue.append(w)
     return None
+    
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
 fib_sequence = create_fibonacci_sequence(n)
