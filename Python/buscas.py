@@ -4,37 +4,37 @@ from collections import deque
 # bfs faz uma pesquisa em largura em um grafo a partir de um rotulo de um nó
 def bfs(graph,s):
 
-    visited = set()
+    explored = set()
     queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
-    visited.add(s)
+    explored.add(s)
     
     while queue:
         v = queue.popleft()
         print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
         for w in v.neighbors:
-            if w.label not in visited:
-                visited.add(w.label)
+            if w.label not in explored:
+                explored.add(w.label)
                 queue.append(w)
     return None
                
 # bfs_with_goal faz uma pesquisa em lagura em um grafo mas pode terminar antes desde qeu encontre um objetivo             
 def bfs_with_goal(graph,s,goal):
 
-    visited = set()
+    explored = set()
     queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
-    visited.add(s)
+    explored.add(s)
     
     while queue:
         v = queue.popleft()
         if v.value == goal:
             return v # se o objetivo for encontrado retorna o nó
         for w in v.neighbors:
-            if w.label not in visited:
-                visited.add(w.label)
+            if w.label not in explored:
+                explored.add(w.label)
                 queue.append(w)
     return None
 
-# ucc_bfs calcula componentes conexas do grafo
+# ucc_bfs calcula componentes conexas do grafo usando um busca em largura
 def ucc_bfs(graph):
     cc = {}
     numCC = 0

@@ -23,9 +23,6 @@ class Graph:
     def add_edge(self, u, v):
         self.vertices_label[u].neighbors.append(self.vertices_label[v])
         self.vertices_label[v].neighbors.append(self.vertices_label[u])  # Para grafo não direcionado
-        
-    def get_neighbors(self,u):
-        return self.vertices_label[u].neighbors
 
         
 # A função a seguir criará a sequencia de fibonacci dado um numero de elementos
