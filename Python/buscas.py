@@ -5,16 +5,15 @@ from collections import deque
 def bfs(graph,s):
 
     visited = set()
-    queue = deque([s])
+    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
     visited.add(s)
     
     while queue:
         v = queue.popleft()
-        vertex = graph.vertices_label[v]  # Obtenha o objeto Vertex para depuração
-        print(f"Visitando: {v}, valor fibonacci: {vertex.value} endereco: {id(vertex)}") # Para depuração
-        for w in graph.get_neighbors(v):
-            if w not in visited:
-                visited.add(w)
+        print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
+        for w in v.neighbors:
+            if w.label not in visited:
+                visited.add(w.label)
                 queue.append(w)
     return None
                
@@ -22,17 +21,16 @@ def bfs(graph,s):
 def bfs_with_goal(graph,s,goal):
 
     visited = set()
-    queue = deque([s])
+    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
     visited.add(s)
     
     while queue:
         v = queue.popleft()
-        vertex = graph.vertices_label[v]  # Obtenha o objeto Vertex para depuração
-        if vertex.value == goal:
-            return vertex # se o objetivo for encontrado retorna o nó
-        for w in graph.get_neighbors(v):
-            if w not in visited:
-                visited.add(w)
+        if v.value == goal:
+            return v # se o objetivo for encontrado retorna o nó
+        for w in v.neighbors:
+            if w.label not in visited:
+                visited.add(w.label)
                 queue.append(w)
     return None
 
@@ -44,14 +42,14 @@ def ucc_bfs(graph,s):
     
     for i in graph.vertice_label:
         if i not in explored:
-        numCC = numCC + 1
-        queue = deque([i])
-        while queue:
-            v = queue.popleft()
-            cc[v] = numCC
-            for w in graph.get_neighbors(v):
-                if w not in explored:
-                    explored.add(w)
-                    queue.append(w)
+            numCC += 1
+            queue = deque([i])
+            while queue:
+                v = queue.popleft()
+                cc[v] = numCC
+                for w in graph.get_neighbors(v):
+                    if w not in explored:
+                        explored.add(w)
+                        queue.append(w)
         
     return cc

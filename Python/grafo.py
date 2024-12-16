@@ -21,8 +21,8 @@ class Graph:
         self.vertices_label[label]= vertex
 
     def add_edge(self, u, v):
-        self.vertices_label[u].neighbors.append(v)
-        self.vertices_label[v].neighbors.append(u)  # Para grafo não direcionado
+        self.vertices_label[u].neighbors.append(self.vertices_label[v])
+        self.vertices_label[v].neighbors.append(self.vertices_label[u])  # Para grafo não direcionado
         
     def get_neighbors(self,u):
         return self.vertices_label[u].neighbors
