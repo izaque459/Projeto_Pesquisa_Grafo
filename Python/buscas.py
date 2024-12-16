@@ -35,21 +35,22 @@ def bfs_with_goal(graph,s,goal):
     return None
 
 # ucc_bfs calcula componentes conexas do grafo
-def ucc_bfs(graph,s):
+def ucc_bfs(graph):
     cc = {}
     numCC = 0
     explored = set()
     
-    for i in graph.vertice_label:
+    for i in graph.vertices_label:
         if i not in explored:
             numCC += 1
-            queue = deque([i])
+            queue = deque([graph.vertices_label[i]])
             while queue:
                 v = queue.popleft()
-                cc[v] = numCC
-                for w in graph.get_neighbors(v):
-                    if w not in explored:
-                        explored.add(w)
-                        queue.append(w)
+                if v.label not in explored:
+                    explored.add(v.label)
+                    cc[v.label] = numCC
+                    for w in v.neighbors:
+                        if w.label not in explored:
+                            queue.append(w)
         
     return cc
