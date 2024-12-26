@@ -43,7 +43,7 @@ def ucc_bfs(graph):
     for i in graph.vertices_label:
         if i not in explored:
             numCC += 1
-            queue = deque([graph.vertices_label[i]])
+            queue = deque([graph.vertices_label[i]]) #usando uma fila
             while queue:
                 v = queue.popleft()
                 if v.label not in explored:
@@ -71,3 +71,23 @@ def dfs(graph,s):
                 queue.append(w)
 
     return None
+
+def ucc_dfs(graph):
+    cc = {}
+    numCC = 0
+    explored = set()
+
+    for i in graph.vertices_label:
+        if i not in explored:
+            numCC += 1
+            queue = deque([graph.vertices_label[i]]) #usando uma pilha
+            while queue:
+                v = queue.pop()
+                if v.label not in explored:
+                    explored.add(v.label)
+                    cc[v.label] = numCC
+                    for w in v.neighbors:
+                        if w.label not in explored:
+                            queue.append(w)
+            
+    return cc
