@@ -91,3 +91,20 @@ def ucc_dfs(graph):
                             queue.append(w)
             
     return cc
+    
+    
+def dfs_recursive(graph, s):
+    explored = set()
+
+    def dfs_helper(v):
+        explored.add(v)
+        print(f"Visitando: {v.label}, valor fibonacci: {v.value}, endereco: {id(v)}")  # Para depuração
+
+        for w in v.neighbors:
+            if w not in explored:
+                dfs_helper(w)
+
+    # usando dfs_helper como parametro um vertice-nó
+    dfs_helper(graph.vertices_label[s])
+
+    return None

@@ -1,4 +1,4 @@
-from buscas import bfs,bfs_with_goal,ucc_bfs,dfs,ucc_dfs
+from buscas import bfs,bfs_with_goal,ucc_bfs,dfs,ucc_dfs, dfs_recursive
 from grafo import create_fibonacci_sequence,build_fibonacci_tree
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
@@ -20,4 +20,7 @@ print(cc_bfs)
 print("\n função de calculo de componentes conectados usando busca em profundidade \n")
 cc_dfs = ucc_dfs(graph)
 print(cc_dfs)
+print("\n funcao dfs recursiva")
+dfs_recursive(graph,inicio)  # uso do dfs com 'inicio'
+
 
