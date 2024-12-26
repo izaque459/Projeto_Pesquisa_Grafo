@@ -54,3 +54,20 @@ def ucc_bfs(graph):
                             queue.append(w)
         
     return cc
+    
+# funcao a seguir implementa a busca em profundidade de um grafo a partir de rotulo s de um nó
+def dfs(graph,s):
+
+    explored = set()
+    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
+    #explored.add(s)
+    
+    while queue:
+        v = queue.pop()
+        print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
+        if v.label not in explored:
+            explored.add(v.label)
+            for w in v.neighbors:
+                queue.append(w)
+
+    return None
