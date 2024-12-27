@@ -127,3 +127,23 @@ def ucc_dfs(graph):
             ucc_dfs_recursive(graph.vertices_label[i])
     
     return cc
+ # a funcao TopoSort calcula a ordem topologica do grafo, efeito pratico verifica se há precedentes
+def TopoSort(graph):
+    explored =  set()
+    curLabel = len(graph.vertices_label)
+    ordering = {}
+    
+    def DFS_Topo(v):
+        nonlocal curLabel
+        explored.add(v)
+        for w in v.neighbors:
+            if w not in explored:
+                DFS_Topo(w)
+        ordering[v.label] = curLabel
+        curLabel -= 1
+        
+    for label in graph.vertices_label:
+        if graph.vertices_label[label] not in explored:
+            DFS_Topo(graph.vertices_label[label])
+    
+    return ordering

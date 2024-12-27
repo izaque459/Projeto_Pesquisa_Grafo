@@ -1,4 +1,4 @@
-from buscas import bfs,bfs_with_goal,ucc_bfs,dfs, ucc_dfs
+from buscas import bfs,bfs_with_goal,ucc_bfs,dfs, ucc_dfs , TopoSort
 from grafo import create_fibonacci_sequence,build_fibonacci_tree_undirected, build_fibonacci_tree_directed
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
@@ -50,4 +50,8 @@ print(cc_bfs1)
 print("\n função de calculo de componentes conectados usando busca em profundidade \n")
 cc_dfs = ucc_dfs(graph_directed)
 print(cc_dfs)
+
+print("\n calcula a ordem topologica do grafo aciclico direcionado \n")
+ordering = TopoSort(graph_directed)
+print(ordering)
 
