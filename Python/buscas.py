@@ -12,8 +12,8 @@ def bfs(s):
         v = queue.popleft()
         print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
         for w in v.neighbors:
-            if w not in explored:   #if w.label not in explored:
-                explored.add(w)        #explored.add(w.label)
+            if w.label not in explored:   #if w.label not in explored:
+                explored.add(w.label)        #explored.add(w.label)
                 queue.append(w)
     return None
                
@@ -29,8 +29,8 @@ def bfs_with_goal(s,goal):
         if v.value == goal:
             return v # se o objetivo for encontrado retorna o nó
         for w in v.neighbors:
-            if w not in explored:
-                explored.add(w)
+            if w.label not in explored:
+                explored.add(w.label)
                 queue.append(w)
     return None
 
@@ -41,16 +41,16 @@ def ucc_bfs(graph):
     explored = set()
     
     for i in graph.vertices_label:
-        if graph.vertices_label[i] not in explored:
+        if i not in explored:
             numCC += 1
             queue = deque([graph.vertices_label[i]]) #usando uma fila
             while queue:
                 v = queue.popleft()
-                if v not in explored:
-                    explored.add(v)
+                if v.label not in explored:
+                    explored.add(v.label)
                     cc[v.label] = numCC
                     for w in v.neighbors:
-                        if w not in explored:
+                        if w.label not in explored:
                             queue.append(w)
         
     return cc
@@ -64,8 +64,8 @@ def dfs(s):
     
     while queue:
         v = queue.pop()
-        if v not in explored:
-            explored.add(v) #explored.add(v.label)
+        if v.label not in explored:
+            explored.add(v.label) 
             print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
             for w in v.neighbors:
                 queue.append(w)
@@ -79,9 +79,9 @@ def dfs(s):
 
 #    for i in graph.vertices_label:
 #       if i not in explored:
-#            numCC += 1
-#            queue = deque([graph.vertices_label[i]]) #usando uma pilha
- #           while queue:
+#           numCC += 1
+#           queue = deque([graph.vertices_label[i]]) #usando uma pilha
+#           while queue:
 #                v = queue.pop()
 #                if v.label not in explored:
 #                    explored.add(v.label)
@@ -115,14 +115,14 @@ def ucc_dfs(graph):
     explored = set()
     
     def ucc_dfs_recursive(v):
-        explored.add(v)
+        explored.add(v.label)
         cc[v.label] = numCC
         for w in v.neighbors:
-            if w not in explored:
+            if w.label not in explored:
                 ucc_dfs_recursive(w)
     
     for i in graph.vertices_label:
-        if graph.vertices_label[i] not in explored:
+        if i not in explored:
             numCC+=1
             ucc_dfs_recursive(graph.vertices_label[i])
     
@@ -135,15 +135,15 @@ def TopoSort(graph):
     
     def DFS_Topo(v):
         nonlocal curLabel
-        explored.add(v)
+        explored.add(v.label)
         for w in v.neighbors:
-            if w not in explored:
+            if w.label not in explored:
                 DFS_Topo(w)
         ordering[v.label] = curLabel
         curLabel -= 1
         
     for label in graph.vertices_label:
-        if graph.vertices_label[label] not in explored:
+        if label not in explored:
             DFS_Topo(graph.vertices_label[label])
     
     return ordering
