@@ -20,10 +20,11 @@ class Graph:
             self.vertices_value[value] = vertex
         self.vertices_label[label]= vertex
 
-    def add_edge(self, u, v):
+    def add_edge_undirected(self, u, v):
         self.vertices_label[u].neighbors.append(self.vertices_label[v])
         self.vertices_label[v].neighbors.append(self.vertices_label[u])  # Para grafo não direcionado
 
+    #def add_edge_directed(self,u,v):
         
 # A função a seguir criará a sequencia de fibonacci dado um numero de elementos
 def create_fibonacci_sequence(n):
@@ -33,15 +34,15 @@ def create_fibonacci_sequence(n):
     return fib_sequence
         
 # esta funcao build_fibonacci_tree construirá o grafo a partir de uma lista com sequencia de fibonacci
-def build_fibonacci_tree(n, fib_sequence):
+def build_fibonacci_tree_undirected(n, fib_sequence):
     graph = Graph()
 
     for i in range(n):# Adiciona vértices com rótulos e valores de Fibonacci
         graph.add_vertex(str(i), fib_sequence[i])
 
     for i in range(2, n):# Adiciona arestas para conectar os vértices de acordo com a sequência de Fibonacci
-        graph.add_edge(str(i), str(i-1))
-        graph.add_edge(str(i), str(i-2))
+        graph.add_edge_undirected(str(i), str(i-1))
+        graph.add_edge_undirected(str(i), str(i-2))
 
     return graph, graph.vertices_label[str(n-1)]  # Retorna o grafo e o nó raiz
 

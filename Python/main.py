@@ -1,10 +1,11 @@
 from buscas import bfs,bfs_with_goal,ucc_bfs,dfs, ucc_dfs
-from grafo import create_fibonacci_sequence,build_fibonacci_tree
+from grafo import create_fibonacci_sequence,build_fibonacci_tree_undirected
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
 fib_sequence = create_fibonacci_sequence(n)
-graph, root = build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
+graph, root = build_fibonacci_tree_undirected(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
 
+print("\n Usando um grafo não direcionado \n")
 print("\n usando a função bfs \n")
 bfs(root)
 print("\n usando a função dfs recursiva \n")
@@ -20,5 +21,6 @@ print("\n função de calculo de componentes conectados usando busca em profundi
 cc_dfs = ucc_dfs(graph)
 print(cc_dfs)
 
+print("\n Usando um grafo direcionado")
 
 
