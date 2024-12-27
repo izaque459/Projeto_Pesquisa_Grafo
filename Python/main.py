@@ -1,4 +1,4 @@
-from buscas import bfs,bfs_with_goal,ucc_bfs,dfs
+from buscas import bfs,bfs_with_goal,ucc_bfs,dfs, ucc_dfs
 from grafo import create_fibonacci_sequence,build_fibonacci_tree
 # Exemplo de uso
 n = 20  # Número de elementos da sequência Fibonacci
@@ -17,8 +17,8 @@ print("\n função de calculo de componentes conectado usando  busca em largura\
 cc_bfs = ucc_bfs(graph)
 print(cc_bfs)
 print("\n função de calculo de componentes conectados usando busca em profundidade \n")
-#cc_dfs = ucc_dfs(graph)
-#print(cc_dfs)
+cc_dfs = ucc_dfs(graph)
+print(cc_dfs)
 
 
 

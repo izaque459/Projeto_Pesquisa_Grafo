@@ -109,3 +109,22 @@ def dfs(s):
     dfs_recursive(s)
 
     return None
+    
+def ucc_dfs(graph):
+    cc = {}
+    numCC = 0
+    explored = set()
+    
+    def ucc_dfs_recursive(v):
+        explored.add(v)
+        cc[v.label] = numCC
+        for w in v.neighbors:
+            if w not in explored:
+                ucc_dfs_recursive(w)
+    
+    for i in graph.vertices_label:
+        if graph.vertices_label[i] not in explored:
+            numCC+=1
+            ucc_dfs_recursive(graph.vertices_label[i])
+    
+    return cc
