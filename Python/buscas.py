@@ -2,10 +2,10 @@ from grafo import Vertex,Graph
 from collections import deque
 
 # bfs faz uma pesquisa em largura em um grafo a partir de um rotulo de um nó
-def bfs(graph,s):
+def bfs(s):
 
     explored = set()
-    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
+    queue = deque([s])# Obtenha o objeto Vertex para depuração
     explored.add(s)
     
     while queue:
@@ -18,10 +18,10 @@ def bfs(graph,s):
     return None
                
 # bfs_with_goal faz uma pesquisa em lagura em um grafo mas pode terminar antes desde qeu encontre um objetivo             
-def bfs_with_goal(graph,s,goal):
+def bfs_with_goal(s,goal):
 
     explored = set()
-    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
+    queue = deque([s])# Obtenha o objeto Vertex para depuração
     explored.add(s)
     
     while queue:

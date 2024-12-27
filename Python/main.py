@@ -5,13 +5,12 @@ n = 20  # Número de elementos da sequência Fibonacci
 fib_sequence = create_fibonacci_sequence(n)
 graph, root = build_fibonacci_tree(n - 1, fib_sequence)  # A raiz é o último elemento da sequência
 
-inicio = root.label
 print("\n usando a função bfs \n")
-bfs(graph,inicio)
+bfs(root)
 print("\n usando a função dfs recursiva \n")
 dfs(root) # uso do dfs com grafo e a sua raiz
 objetivo= 5
-if bfs_with_goal(graph,inicio,objetivo) :
+if bfs_with_goal(root,objetivo) :
     print (f'\n encontrado valor {objetivo} \n')
     
 print("\n função de calculo de componentes conectado usando  busca em largura\n")
