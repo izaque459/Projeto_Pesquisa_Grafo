@@ -55,56 +55,57 @@ def ucc_bfs(graph):
         
     return cc
     
-# funcao a seguir implementa a busca em profundidade de um grafo a partir de rotulo s de um nó
-def dfs(graph,s):
+# funcao a seguir implementa a busca em profundidade de um grafo a partir de rotulo s de um nó versao iterativa
 
-    explored = set()
-    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
+#def dfs(graph,s):
+
+#    explored = set()
+#    queue = deque([graph.vertices_label[s]])# Obtenha o objeto Vertex para depuração
     #explored.add(s)
     
-    while queue:
-        v = queue.pop()
-        print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
-        if v.label not in explored:
-            explored.add(v.label)
-            for w in v.neighbors:
-                queue.append(w)
+#    while queue:
+#        v = queue.pop()
+#        print(f"Visitando: {v.label}, valor fibonacci: {v.value} endereco: {id(v)}") # Para depuração
+#        if v.label not in explored:
+#            explored.add(v.label)
+#            for w in v.neighbors:
+#                queue.append(w)
 
-    return None
+#    return None
 
-def ucc_dfs(graph):
-    cc = {}
-    numCC = 0
-    explored = set()
+#def ucc_dfs(graph):
+#    cc = {}
+#    numCC = 0
+#    explored = set()
 
-    for i in graph.vertices_label:
-        if i not in explored:
-            numCC += 1
-            queue = deque([graph.vertices_label[i]]) #usando uma pilha
-            while queue:
-                v = queue.pop()
-                if v.label not in explored:
-                    explored.add(v.label)
-                    cc[v.label] = numCC
-                    for w in v.neighbors:
-                        if w.label not in explored:
-                            queue.append(w)
+#    for i in graph.vertices_label:
+#       if i not in explored:
+#            numCC += 1
+#            queue = deque([graph.vertices_label[i]]) #usando uma pilha
+ #           while queue:
+#                v = queue.pop()
+#                if v.label not in explored:
+#                    explored.add(v.label)
+#                    cc[v.label] = numCC
+#                    for w in v.neighbors:
+#                        if w.label not in explored:
+#                            queue.append(w)
             
-    return cc
+#    return cc
     
     
-def dfs_recursive(graph, s):
+def dfs(s):
     explored = set()
 
-    def dfs_helper(v):
+    def dfs_recursive(v):
         explored.add(v)
         print(f"Visitando: {v.label}, valor fibonacci: {v.value}, endereco: {id(v)}")  # Para depuração
 
         for w in v.neighbors:
             if w not in explored:
-                dfs_helper(w)
+                dfs_recursive(w)
 
-    # usando dfs_helper como parametro um vertice-nó
-    dfs_helper(graph.vertices_label[s])
+    # usando dfs_recursive como parametro um vertice-nó
+    dfs_recursive(s)
 
     return None
