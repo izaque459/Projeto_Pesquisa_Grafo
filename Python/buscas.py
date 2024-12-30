@@ -1,4 +1,4 @@
-from grafo import Vertex,Graph
+from grafo import Vertex,Graph, reverse_graph
 from collections import deque
 
 # bfs faz uma pesquisa em largura em um grafo a partir de um rotulo de um nó
@@ -6,7 +6,7 @@ def bfs(s):
 
     explored = set()
     queue = deque([s])  # Obtenha o objeto Vertex para depuração
-    explored.add(s)     #explored.add(s.label)
+    explored.add(s.label)     #explored.add(s.label)
     
     while queue:
         v = queue.popleft()
@@ -148,4 +148,31 @@ def TopoSort(graph):
     
     return ordering
     
+def Kosaraju(original_graph):
+
+    reverted_graph = reverse_graph(original_graph)
     
+    ordering = TopoSort(reverted_graph)
+    
+    scc = {}
+    numSCC = 0
+    
+    
+    def dfs_scc(graph, label, explored_local): # explored local para cada chamada
+        explored_local.add(label)
+        scc[label] = numSCC
+        for neighbor in graph.vertices_label[label].neighbors:
+            if neighbor.label not in explored_local:
+                dfs_scc(graph, neighbor.label, explored_local)
+        
+    
+   # Ordena os rótulos dos vértices pela ordem topológica calculada
+    sorted_vertices = sorted(ordering, key=ordering.get, reverse=True)
+
+    for label in sorted_vertices:
+        if label not in scc: #verifica se o vertice ja foi visitado por outro componente
+            numSCC += 1
+            explored_local = set() # Cria um novo conjunto explored para cada componente
+            dfs_scc(original_graph, label, explored_local)
+
+    return scc
