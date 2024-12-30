@@ -61,3 +61,19 @@ def build_fibonacci_tree_directed(n, fib_sequence):
 
     return graph, graph.vertices_label[str(n-1)]  # Retorna o grafo e o nó raiz
 
+def reverse_graph(original_graph):
+    
+    graph_reversed = Graph()
+    
+    # Adiciona os vertices ao grafo reverso
+    for label, vertex in original_graph.vertices_label.items():
+        graph_reversed.add_vertex(label, vertex.value)
+        
+    # Inverte as arestas
+    for label, vertex in original_graph.vertices_label.items():
+        for neighbor in vertex.neighbors:
+            graph_reversed.add_edge_directed(neighbor.label, label) #Inverte a direção da aresta
+
+    return graph_reversed
+    
+    return graph

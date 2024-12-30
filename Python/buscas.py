@@ -147,3 +147,5 @@ def TopoSort(graph):
             DFS_Topo(graph.vertices_label[label])
     
     return ordering
+    
+    
