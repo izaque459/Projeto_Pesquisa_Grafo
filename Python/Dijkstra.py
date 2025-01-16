@@ -2,6 +2,9 @@
 # Esta classe Graph será diferente da implementada em grafo.py
 # Pois ela conterah arestas com peso
 
+from collections import deque
+import heapq
+
 class Graph:
 
     def __init__(self):
@@ -29,8 +32,25 @@ class Graph:
 
         
 
-def dijkstra(graph):
-    return None
+def dijkstra(graph, s):
+    dist = {v: float('inf') for v in graph.adjacencies}
+    dist[s] = 0
+    priority_queue = [(0, s)]  # Fila de prioridade: (distância, vértice)
+
+    while priority_queue:
+        current_dist, current_vertex = heapq.heappop(priority_queue)
+
+        # Se já processamos um caminho mais curto para este vértice, ignoramos
+        if current_dist > dist[current_vertex]:
+            continue
+
+        for neighbor, weight in graph.adjacencies[current_vertex].items():
+            new_dist = current_dist + weight
+            if new_dist < dist[neighbor]:
+                dist[neighbor] = new_dist
+                heapq.heappush(priority_queue, (new_dist, neighbor))
+
+    return dist
 
 
 
@@ -192,3 +212,9 @@ graph.add_vertex("Rio de Janeiro", 0)
 
 # Tentando adicionar uma aresta com vértice inexistente
 graph.add_edge("Rio de Janeiro", "Miami", 0)
+
+distancias = dijkstra(graph,"Rio de Janeiro")
+
+for cidade, distancia in distancias.items():
+    print(f"Distância do Rio de Janeiro para {cidade}: {distancia}")
+
