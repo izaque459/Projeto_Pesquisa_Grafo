@@ -22,3 +22,4 @@ reutilizados.
 5. Calculo de componentes conectados (usando busca em largura e busca em profundidade)
 6. Calculo de ordem topologica de grafo acíclico (usando busca em profundidade)
 7. Calculo de componentes fortemente conectados (usando busca em profundidade)
+8. Algoritmo de Dijkstra (usando com arestas peso, para calcular o menor caminho entre vertices)
